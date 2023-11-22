@@ -13,6 +13,7 @@
       <groupId>io.github.bmarwell.maven</groupId>
       <artifactId>showcase-maven-dependency-unpack-resources</artifactId>
       <version>1.0.0-SNAPSHOT</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
     
