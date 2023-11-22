@@ -22,7 +22,7 @@
           <executions>
             <execution>
               <id>default-jar</id>
-              <phase>compile</phase>
+              <phase>process-test-resources</phase>
             </execution>
           </executions>
         </plugin>

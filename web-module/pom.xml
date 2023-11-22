@@ -26,7 +26,7 @@
           <execution>
             <id>unpack-resources</id>
             <goals>
-              <goal>unpack</goal>
+              <goal>unpack-dependencies</goal>
             </goals>
             <phase>test</phase>
             <configuration>
