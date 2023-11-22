@@ -1,0 +1,50 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+    
+  <groupId>io.github.bmarwell.maven</groupId>
+  <artifactId>showcase-maven-dependency-unpack-web</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <name>showcase-maven-dependency-unpack :: web</name>
+  <packaging>jar</packaging>
+    
+  <dependencies>
+    <dependency>
+      <groupId>io.github.bmarwell.maven</groupId>
+      <artifactId>showcase-maven-dependency-unpack-resources</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+    
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>unpack-resources</id>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <phase>test</phase>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>io.github.bmarwell.maven</groupId>
+                  <artifactId>showcase-maven-dependency-unpack-resources</artifactId>
+                  <version>${project.version}</version>
+                  <type>jar</type>
+                  <overWrite>true</overWrite>
+                  <outputDirectory>${project.build.directory}/alternateLocation</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+    
+</project>
+    
