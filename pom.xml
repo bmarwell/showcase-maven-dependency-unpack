@@ -13,10 +13,22 @@
         <jakartaee>10.0.0</jakartaee>
         <maven.compiler.release>17</maven.compiler.release>
     </properties>
+
+    <description>A showcase for maven with attached artifacts and ITs</description>
+    <licenses>
+        <license>
+            <name>Apache-2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+
+    <inceptionYear>2003</inceptionYear>
     
     <modules>
-        <module>resource-module</module>
-        <module>web-module</module>
+        <module>app</module>
+        <module>integration-tests</module>
     </modules>
     
     <build>

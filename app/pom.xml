@@ -1,0 +1,104 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+    <groupId>io.github.bmarwell.maven</groupId>
+    <artifactId>showcase-maven-dependency-unpack</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+  
+  <groupId>io.github.bmarwell.maven</groupId>
+  <artifactId>showcase-maven-dependency-app</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <name>showcase-maven-dependency-unpack :: app</name>
+  <properties>
+    <package.module>io.github.bmarwell.maven.showcase.maven.dependency.app</package.module>
+  </properties>
+  <packaging>jar</packaging>
+    
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.jreleaser</groupId>
+        <artifactId>jreleaser-maven-plugin</artifactId>
+        <version>1.9.0</version>
+        <inherited>false</inherited>
+        <executions>
+          <execution>
+            <id>package-app</id>
+            <goals>
+              <goal>assemble</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <jreleaser>
+                <project>
+                  <version>${project.version}</version>
+                  <description>${project.description}</description>
+                  <authors>The authors</authors>
+                  <inceptionYear>${project.inceptionYear}</inceptionYear>
+                </project>
+                <assemble>
+                  <javaArchive>
+                    <showcaseApp>
+                      <active>ALWAYS</active>
+                      <exported>true</exported>
+                      <stereotype>CLI</stereotype>
+                      <executable>
+                        <name>showcaseApp</name>
+                        <unixExtension>sh</unixExtension>
+                        <windowsExtension>cmd</windowsExtension>
+                      </executable>
+                      <formats>
+                        <format>ZIP</format>
+                        <format>TGZ</format>
+                      </formats>
+                      <options>
+                        <longFileMode>GNU</longFileMode>
+                        <bigNumberMode>GNU</bigNumberMode>
+                      </options>
+                      <mainJar>
+                        <path>${project.build.directory}/${project.build.finalName}.jar</path>
+                      </mainJar>
+                      <java>
+                        <mainModule>${package.module}</mainModule>
+                        <mainClass>${package.module}.Application</mainClass>
+                      </java>
+                    </showcaseApp>
+                  </javaArchive>
+                </assemble>
+              </jreleaser>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>3.3.0</version>
+        <executions>
+          <execution>
+            <id>attach-jreleaser-zip</id>
+            <goals>
+              <goal>attach-artifact</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <artifacts>
+                <artifact>
+                  <file>${project.build.directory}/jreleaser/assemble/showcaseApp/java-archive/showcaseApp-${project.version}.zip</file>
+                  <type>zip</type>
+                  <classifier>dist</classifier>
+                </artifact>
+              </artifacts>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+    
+</project>
+    

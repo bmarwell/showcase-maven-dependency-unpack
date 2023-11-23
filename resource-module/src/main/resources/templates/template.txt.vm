@@ -1,2 +1,0 @@
-#set( $foo = "${project.version}" )
-Hello $foo World!
