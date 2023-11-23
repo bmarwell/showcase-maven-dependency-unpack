@@ -1,0 +1,26 @@
+= showcase-maven-dependency-unpack
+
+A showcase for maven with attached artifacts and ITs
+
+== Execution
+
+=== Verify Goal
+
+[source,bash]
+----
+mvn verify
+----
+
+… works as expected.
+
+=== compile goal
+
+(on clean project)
+
+[source,bash]
+----
+mvn compile
+----
+
+… does not work, because the dependency has not been packaged.
+However, it would not have been needed at this point, so, in MY humble opinion, it should not fail.
